@@ -1,0 +1,65 @@
+Bring up mobile broadband connection from NetworkManager:
+# list connections
+# nmcli c list
+
+NAME                      UUID                                   TYPE              TIMESTAMP-REAL                    
+Telstra extranet          a7862012-e782-456c-8783-57e1f5037c66   gsm               Tue 23 Feb 2016 01:12:28 PM ACDT  
+Wired connection 1        527aa722-72cc-4a8e-a91d-40168484337c   802-3-ethernet    Tue 01 Jan 1980 10:32:29 AM ACDT  
+
+# nmcli c status
+nmcli c status
+NAME                      UUID                                   DEVICES    DEFAULT  VPN   MASTER-PATH                                 
+Wired connection 1        527aa722-72cc-4a8e-a91d-40168484337c   eth0       no       no    --           
+
+# Bring up:
+nmcli c up uuid a7862012-e782-456c-8783-57e1f5037c66
+
+# nmcli c status
+NAME                      UUID                                   DEVICES    DEFAULT  VPN   MASTER-PATH                                 
+Wired connection 1        527aa722-72cc-4a8e-a91d-40168484337c   eth0       no       no    --                                          
+Telstra extranet          a7862012-e782-456c-8783-57e1f5037c66   cdc-wdm0   yes      no    --       
+
+# nmcli c down uuid a7862012-e782-456c-8783-57e1f5037c66
+
+# nmcli c status
+NAME                      UUID                                   DEVICES    DEFAULT  VPN   MASTER-PATH                                 
+Wired connection 1        527aa722-72cc-4a8e-a91d-40168484337c   eth0       no       no    --              
+
+GPS on Sierra Wireless:
+stty raw -F /dev/ttyUSB1
+echo \$GPS_START > /dev/ttyUSB1
+
+# Test:
+gpsd -n -N -D 4 /dev/ttyUSB1
+gpscat /dev/ttyUSB1
+
+# Run gpsd:
+gpsd -n -D 4 /dev/ttyUSB1
+
+RFD900+:
+minicom is needed for +++ to work on rfd900+, cutecom cause problems because of the LF without pausing for 1 second.
+screen works but doesn't send \n properly.
+screen /dev/ttyUSB3 57600
+
+qgroundcontrol
+git clone https://github.com/mavlink/qgroundcontrol.git
+cd /qgroundcontrol/libs/mavlink/include/mavlink/v1.0
+git submodule init
+git submodule update
+
+Prerequisites for building qgroundcontrol
+sudo apt-get install gstreamer1.0*
+sudo apt-get install libsdl1.2-dev
+sudo apt-get install libgstreamer-plugins-base1.0-dev
+
+px4
+mkdir -p ~/src
+cd ~/src
+git clone https://github.com/PX4/Firmware.git
+
+cd Firmware
+make -j 1 px4fmu-v2_default
+
+DO NOT do make clean as some libraries cannot be build but are cleans
+e.g. src/Firmware/src/lib/mathlib/CMSIS/*.a
+
