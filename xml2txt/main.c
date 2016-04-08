@@ -7,6 +7,7 @@ int main(int argc, char **argv){
 
 	char geofence[10000];
 	int index = 0;
+	int index2 = 0;
 
 	/*ifp = fopen("geofenceData.txt", "w");
 	fprintf(ifp, "d");
@@ -22,29 +23,35 @@ int main(int argc, char **argv){
 
 
 	//And now we read data from geofenceData
-	fscanf(ifp, "%[^\n]%s", geofence);
-	while(geofence[index] != EOF){
-		printf("%d, %c\n", index, geofence[index]);
-		if(	geofence[index] == 'd'){
-			printf("break \n");
-			break;
-		}
-		if(geofence[index] == ',') {
-			printf("%c", geofence[index+1]);
-			if(geofence[index+1] == '0'){
+	while(!feof(ifp)){
+		geofence[index] = fgetc(ifp);
+		index++;
+	}
+
+	printf("%d", index);
+
+
+
+	while(index2 < (index-1)){
+		printf("%d, %c\n", index2, geofence[index2]);
+		if(geofence[index2] == ',') {
+			printf("%c", geofence[index2+1]);
+			if(geofence[index2+1] == '0'){
 				printf("new coordinates");
 				fprintf(ofp, "\n");
-				index = index + 3;
+				index2 = index2 + 3;
 			} else {
 				fprintf(ofp, " ");
-				index++;
+				index2++;
 			}
 		} else {
-			fprintf(ofp, "%c", geofence[index]);
-			index++;
+			fprintf(ofp, "%c", geofence[index2]);
+			index2++;
 		}
 
 	}
+
+
 
 	printf("hello world");
 	fclose(ifp);
