@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		Geofence g(argv[1]);
+		Geofence g;
+		g.Initialise(argv[1]);
 	}
 	else
 	{

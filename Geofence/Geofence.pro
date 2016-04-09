@@ -12,9 +12,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    Geofence.cpp
+    Geofence.cpp \
+    Element.cpp
 
 HEADERS  += \
-    Geofence.h
+    Geofence.h \
+    Element.h
 
 FORMS    +=
