@@ -1,0 +1,53 @@
+EASYSTAR / EASYSTAR II MIXER
+============================
+
+Aileron L mixer Output Channel 1
+-------------
+One output - would be easy to add support for 2 servos
+
+M: 1
+O:      10000  10000      0 -10000  10000
+S: 0 0  10000  10000      0 -10000  10000
+
+Elevator L mixer Output Channel 2
+------------
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 1  -10000  -10000      0 -10000  10000
+
+Rudder mixer Output Channel 3 
+------------
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 2  -10000  -10000      0 -10000  10000
+
+Motor speed mixer Output Channel 4
+-----------------
+
+M: 1
+O:      10000  10000      0 -10000  10000
+S: 0 3      0  40000 -10000 -10000  10000
+
+Elevator R mixer Output Channel 5
+------------
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 1   10000   10000      0 -10000  10000
+
+
+Aileron R mixer Output Channel 6
+-------------
+
+M: 1
+O:      10000  10000      0 -10000  10000
+S: 0 0  10000  10000      0 -10000  10000
+
+Starter Motor Output Channel 7
+-------------
+
+M: 1
+O:      10000  10000      0 -10000  10000
+S: 0 6  10000  10000      0 -10000  10000
